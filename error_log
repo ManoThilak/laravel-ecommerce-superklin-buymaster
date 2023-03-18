@@ -1,0 +1,25 @@
+[03-Mar-2023 11:10:41 Asia/Dhaka] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [3118] Access denied for user 'jellyhub_ecommerce_multi'@'localhost'. Account is locked. in /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:70
+Stack trace:
+#0 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(70): PDO->__construct('mysql:host=loca...', 'jellyhub_ecomme...', '7([[^!Z1ra-b', Array)
+#1 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(46): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=loca...', 'jellyhub_ecomme...', '7([[^!Z1ra-b', Array)
+#2 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#3 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Il in /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 712
+[03-Mar-2023 11:10:47 Asia/Dhaka] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [3118] Access denied for user 'jellyhub_ecommerce_multi'@'localhost'. Account is locked. in /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:70
+Stack trace:
+#0 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(70): PDO->__construct('mysql:host=loca...', 'jellyhub_ecomme...', '7([[^!Z1ra-b', Array)
+#1 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(46): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=loca...', 'jellyhub_ecomme...', '7([[^!Z1ra-b', Array)
+#2 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#3 /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Il in /home/jellyhub/public_html/mano/ecommerce/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 712
+[04-Mar-2023 17:15:32 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:33 Asia/Calcutta] 
+[04-Mar-2023 17:15:34 Asia/Calcutta] 
+[04-Mar-2023 17:15:34 Asia/Calcutta] 
+[04-Mar-2023 17:15:34 Asia/Calcutta] 
