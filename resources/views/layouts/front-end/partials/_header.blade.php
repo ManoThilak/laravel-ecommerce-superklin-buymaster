@@ -525,7 +525,7 @@
 
                             @php($seller_registration=\App\Model\BusinessSetting::where(['type'=>'seller_registration'])->first()->value)
                             @if($seller_registration)
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -543,7 +543,10 @@
                                             </a>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
+                                <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
+                                <a class="nav-link" href="{{route('seller.auth.login')}}">{{ \App\CPU\translate('Seller')}}  {{ \App\CPU\translate('login')}}</a>
+                            </li>
                             @endif
                         @endif
                     </ul>
