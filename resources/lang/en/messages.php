@@ -2579,4 +2579,6 @@
   'email_status_is_not_active' => 'Email status is not active',
   'mail_received_successfully' => 'Mail received successfully',
   'Add_New_Delivery_man' => 'Add New Delivery man',
+  'Search buymaster.in ...' => 'Search buymaster.in ...',
+  'Customer_list' => 'Customer list',
 );

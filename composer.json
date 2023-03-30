@@ -7,7 +7,9 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-curl": "*",
+        "ext-intl": "*",
         "ext-json": "*",
+        "ext-mysqli": "*",
         "ext-openssl": "*",
         "aws/aws-sdk-php": "^3.209",
         "barryvdh/laravel-dompdf": "^2.0",
@@ -20,6 +22,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
         "kingflamez/laravelrave": "^4.2",
+        "kreait/firebase-php": "^6.9",
         "laravel/framework": "^8.65",
         "laravel/passport": "^10.2",
         "laravel/sanctum": "^2.11",
@@ -41,9 +44,7 @@
         "stripe/stripe-php": "^7.107",
         "symfony/translation": "^5.4",
         "twilio/sdk": "^6.31",
-        "unicodeveloper/laravel-paystack": "^1.0",
-      "ext-mysqli": "*",
-      "ext-intl": "*"
+        "unicodeveloper/laravel-paystack": "^1.0"
     },
     "require-dev": {
         "amirami/localizator": "^0.7.1@alpha",

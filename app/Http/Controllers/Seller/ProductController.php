@@ -678,10 +678,11 @@ class ProductController extends Controller
 
         $product->video_provider = 'youtube';
         $product->video_url = $request->video_link;
-        if ($product->request_status == 2) {
+       // if ($product->request_status == 2) {
             $product->request_status = 0;
-        }
-
+        //}
+            $product->status = 0;
+            $product->featured = 0;
         if ($request->ajax()) {
             return response()->json([], 200);
         } else {

@@ -399,7 +399,7 @@ if ($order['extra_discount_type'] == 'percent') {
             <th class="text-left" style="width: 60%">
                 <h4 class="fz-12 mb-1">{{\App\CPU\translate('payment_details')}}</h4>
                 <h5 class="fz-12 mb-1 font-weight-normal">{{ str_replace('_',' ',$order->payment_method) }}</h5>
-                <p class="fz-12 font-weight-normal">{{$order->payment_status}}
+                <p class="fz-12 font-weight-normal">{{strtoupper($order->payment_status)}}
                     , {{date('y-m-d',strtotime($order['created_at']))}}</p>
 
                 @if ($order->delivery_type !=null)

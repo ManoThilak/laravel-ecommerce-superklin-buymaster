@@ -146,7 +146,7 @@
                     <form action="{{route('products')}}" type="submit" class="search_form">
                         <input class="form-control appended-form-control search-bar-input" type="text"
                                autocomplete="off"
-                               placeholder="{{\App\CPU\translate('Search here ...')}}"
+                               placeholder="{{\App\CPU\translate('Search buymaster.in ...')}}"
                                name="name">
                         <button class="input-group-append-overlay search_button" type="submit"
                                 style="border-radius: {{Session::get('direction') === "rtl" ? '7px 0px 0px 7px; right: unset; left: 0' : '0px 7px 7px 0px; left: unset; right: 0'}};top:0">

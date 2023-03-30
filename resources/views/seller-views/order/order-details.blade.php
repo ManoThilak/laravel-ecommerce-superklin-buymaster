@@ -372,29 +372,29 @@
                 <div class="card">
                     <!-- Body -->
                     @if($order->customer)
-                        <div class="card-body">
-                            <h4 class="mb-4 d-flex align-items-center gap-2">
-                                <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">
-                                {{\App\CPU\translate('Customer_information')}}
-                            </h4>
-                            <div class="media">
-                                <div class="mr-3">
-                                    <img class="avatar rounded-circle avatar-70"
-                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                        src="{{asset('storage/app/public/profile/'.$order->customer->image)}}"
-                                        alt="Image">
-                                </div>
-                                <div class="media-body d-flex flex-column gap-1">
-                                    <span class="title-color"><strong>{{$order->customer['f_name'].' '.$order->customer['l_name']}}</strong></span>
-                                    <span class="title-color">
-                                        <strong>{{\App\Model\Order::where('customer_id',$order['customer_id'])->count()}} </strong>
-                                        {{\App\CPU\translate('orders')}}
-                                    </span>
-                                    <span class="title-color break-all"><strong>{{$order->customer['phone']}}</strong></span>
-                                    <span class="title-color break-all">{{$order->customer['email']}}</span>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="card-body">-->
+                        <!--    <h4 class="mb-4 d-flex align-items-center gap-2">-->
+                        <!--        <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">-->
+                        <!--        {{\App\CPU\translate('Customer_information')}}-->
+                        <!--    </h4>-->
+                        <!--    <div class="media">-->
+                        <!--        <div class="mr-3">-->
+                        <!--            <img class="avatar rounded-circle avatar-70"-->
+                        <!--                onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"-->
+                        <!--                src="{{asset('storage/app/public/profile/'.$order->customer->image)}}"-->
+                        <!--                alt="Image">-->
+                        <!--        </div>-->
+                        <!--        <div class="media-body d-flex flex-column gap-1">-->
+                        <!--            <span class="title-color"><strong>{{$order->customer['f_name'].' '.$order->customer['l_name']}}</strong></span>-->
+                        <!--            <span class="title-color">-->
+                        <!--                <strong>{{\App\Model\Order::where('customer_id',$order['customer_id'])->count()}} </strong>-->
+                        <!--                {{\App\CPU\translate('orders')}}-->
+                        <!--            </span>-->
+                        <!--            <span class="title-color break-all"><strong>{{$order->customer['phone']}}</strong></span>-->
+                        <!--            <span class="title-color break-all">{{$order->customer['email']}}</span>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</div>-->
                     @else
                         <div class="card-body">
                             <div class="media">
@@ -411,11 +411,11 @@
                 <div class="card">
                     <!-- Body -->
                     @if($order->customer)
-                        <div class="card-body">
-                            <h4 class="mb-4 d-flex align-items-center gap-2">
-                                <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">
-                                {{\App\CPU\translate('shipping_address')}}
-                            </h4>
+                        <!--<div class="card-body">-->
+                            <!--<h4 class="mb-4 d-flex align-items-center gap-2">-->
+                            <!--    <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">-->
+                            <!--    {{\App\CPU\translate('shipping_address')}}-->
+                            <!--</h4>-->
 
                             @if($order->shippingAddress)
                                 @php($shipping_address=$order->shippingAddress)
@@ -423,30 +423,30 @@
                                 @php($shipping_address=json_decode($order['shipping_address_data']))
                             @endif
 
-                            <div class="d-flex flex-column gap-2">
-                                <div>
-                                    <span>{{\App\CPU\translate('Name')}} :</span>
-                                    <strong>{{$shipping_address? $shipping_address->contact_person_name : ''}}</strong>
-                                </div>
-                                <div>
-                                    <span>{{\App\CPU\translate('Contact')}}:</span>
-                                    <strong>{{$shipping_address ? $shipping_address->phone  : ''}}</strong>
-                                </div>
-                                <div>
-                                    <span>{{\App\CPU\translate('City')}}:</span>
-                                    <strong>{{$shipping_address ? $shipping_address->city : ''}}</strong>
-                                </div>
-                                <div>
-                                    <span>{{\App\CPU\translate('zip_code')}} :</span>
-                                    <strong>{{$shipping_address ? $shipping_address->zip  : ''}}</strong>
-                                </div>
-                                <div class="d-flex align-items-start gap-2">
+                            <!--<div class="d-flex flex-column gap-2">-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('Name')}} :</span>-->
+                            <!--        <strong>{{$shipping_address? $shipping_address->contact_person_name : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('Contact')}}:</span>-->
+                            <!--        <strong>{{$shipping_address ? $shipping_address->phone  : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('City')}}:</span>-->
+                            <!--        <strong>{{$shipping_address ? $shipping_address->city : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('zip_code')}} :</span>-->
+                            <!--        <strong>{{$shipping_address ? $shipping_address->zip  : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div class="d-flex align-items-start gap-2">-->
                                     <!-- <span>{{\App\CPU\translate('address')}} :</span> -->
-                                    <img src="{{asset('/public/assets/back-end/img/location.png')}}" alt="">
-                                    {{$shipping_address ? $shipping_address->address  : ''}}
-                                </div>
-                            </div>
-                        </div>
+                            <!--        <img src="{{asset('/public/assets/back-end/img/location.png')}}" alt="">-->
+                            <!--        {{$shipping_address ? $shipping_address->address  : ''}}-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     @else
                         <div class="card-body">
                             <div class="media align-items-center">
@@ -463,11 +463,11 @@
                 <div class="card">
                     <!-- Body -->
                     @if($order->customer)
-                        <div class="card-body">
-                            <h4 class="mb-4 d-flex gap-2">
-                                <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">
-                                {{\App\CPU\translate('billing_address')}}
-                            </h4>
+                        <!--<div class="card-body">-->
+                            <!--<h4 class="mb-4 d-flex gap-2">-->
+                            <!--    <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">-->
+                            <!--    {{\App\CPU\translate('billing_address')}}-->
+                            <!--</h4>-->
 
                             @if($order->billingAddress)
                                 @php($billing=$order->billingAddress)
@@ -475,29 +475,29 @@
                                 @php($billing=json_decode($order['billing_address_data']))
                             @endif
 
-                            <div class="d-flex flex-column gap-2">
-                                <div>
-                                    <span>{{\App\CPU\translate('Name')}} :</span>
-                                    <strong>{{$billing? $billing->contact_person_name : ''}}</strong>
-                                </div>
-                                <div>
-                                    <span>{{\App\CPU\translate('Contact')}}:</span>
-                                    <strong>{{$billing ? $billing->phone  : ''}}</strong>
-                                </div>
-                                <div>
-                                    <span>{{\App\CPU\translate('City')}}:</span>
-                                    <strong>{{$billing ? $billing->city : ''}}</strong>
-                                </div>
-                                <div>
-                                    <span>{{\App\CPU\translate('zip_code')}} :</span>
-                                    <strong>{{$billing ? $billing->zip  : ''}}</strong>
-                                </div>
-                                <div class="d-flex align-items-start gap-2">
-                                    <img src="{{asset('/public/assets/back-end/img/location.png')}}" alt="">
-                                    {{$billing ? $billing->address  : ''}}
-                                </div>
-                            </div>
-                        </div>
+                            <!--<div class="d-flex flex-column gap-2">-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('Name')}} :</span>-->
+                            <!--        <strong>{{$billing? $billing->contact_person_name : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('Contact')}}:</span>-->
+                            <!--        <strong>{{$billing ? $billing->phone  : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('City')}}:</span>-->
+                            <!--        <strong>{{$billing ? $billing->city : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div>-->
+                            <!--        <span>{{\App\CPU\translate('zip_code')}} :</span>-->
+                            <!--        <strong>{{$billing ? $billing->zip  : ''}}</strong>-->
+                            <!--    </div>-->
+                            <!--    <div class="d-flex align-items-start gap-2">-->
+                            <!--        <img src="{{asset('/public/assets/back-end/img/location.png')}}" alt="">-->
+                            <!--        {{$billing ? $billing->address  : ''}}-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     @else
                         <div class="card-body">
                             <div class="media align-items-center">

@@ -363,8 +363,8 @@
             <th class="text-left">
                 <h4 class="fz-12 mb-1">{{\App\CPU\translate('payment_details')}}</h4>
                 <p class="fz-12 font-normal">
-                    {{$order->payment_status}}
-                    , {{date('y-m-d',strtotime($order['created_at']))}}
+                    {{strtoupper($order->payment_status)}}
+                    , {{date('d-M-Y',strtotime($order['created_at']))}}
                 </p>
 
                 @if ($order->delivery_type !=null)

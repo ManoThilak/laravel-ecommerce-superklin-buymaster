@@ -526,6 +526,15 @@ class Helpers
               }
         }';
 
+//         use Kreait\Firebase\Factory;
+// use Kreait\Firebase\Messaging\CloudMessage;
+// use Kreait\Firebase\Messaging\Notification;
+
+// $factory = (new Factory)->withServiceAccount('/path/to/firebase_credentials.json');
+// $messaging = $factory->createMessaging();
+// $projectId = 'your-project-id';
+
+
         $ch = curl_init();
         $timeout = 120;
         curl_setopt($ch, CURLOPT_URL, $url);

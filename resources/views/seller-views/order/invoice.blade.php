@@ -370,7 +370,7 @@
             <th class="text-left" style="width: 60%">
                 <h4 class="fz-12 mb-1">{{\App\CPU\translate('payment_details')}}</h4>
                 <p class="fz-12 font-normal">
-                    {{$order->payment_status}}
+                    {{strtoupper($order->payment_status)}}
                     , {{date('y-m-d',strtotime($order['created_at']))}}
                 </p>
 
