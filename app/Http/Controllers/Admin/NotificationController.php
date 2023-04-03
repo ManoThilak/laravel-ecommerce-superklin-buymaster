@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\CPU\Helpers;
@@ -49,8 +48,10 @@ class NotificationController extends Controller
 
         if ($request->has('image')) {
             $notification->image = ImageManager::upload('notification/', 'png', $request->file('image'));
+            $image = ImageManager::upload('notification/', 'png', $request->file('image'));
         } else {
             $notification->image = 'null';
+            $image = '';
         }
 
         $notification->status             = 1;
@@ -58,7 +59,52 @@ class NotificationController extends Controller
         $notification->save();
 
         try {
-            Helpers::send_push_notif_to_topic($notification);
+           // Helpers::send_push_notif_to_topic($notification);
+           // Helpers::send_push_notif_to_device('drDCV-NyThyexVTA22VyLd:APA91bEnovra2IGAjETCh1iazmC_4K-gjhhgNz4yfy73v94VkbulNtElvN42Yo3XR07YsuU8q4MCcOGuNrGMnEx8GaA25PTSxsoZE8uTA6la_NVYPFB1Y3Nzd_wNTppZXUQdnV0qJfup', $notification);
+           
+            $content = array("en" => filter_var($request->description, FILTER_SANITIZE_STRING));
+            $heading = array("en" => filter_var($request->title, FILTER_SANITIZE_STRING));
+
+                $fields = array(
+                    'app_id' => "c5fabebb-0e25-49e3-9438-4f1ffcfb42c5",
+                    'included_segments' => array('All'),
+                    'data' => array("foo" => "bar"),
+                    'large_icon' =>'https://srilakshminarasimarlogistics.com/ecommerce/storage/app/public/company/2023-03-27-64215b6059fef.png',
+                    'small_icon' =>'https://srilakshminarasimarlogistics.com/ecommerce/storage/app/public/company/2023-03-27-64215b6059fef.png',
+                    'contents' => $content,
+                    'headings' => $heading,
+                    'big_picture' => 'https://srilakshminarasimarlogistics.com/ecommerce/storage/app/public/notification/' . $image
+                );
+
+                    $fields = json_encode($fields);
+                    // print("\nJSON sent:\n");
+                    // print($fields);
+
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+                                                                   'Authorization: Basic YWJjZGIwOTktNzE2MC00MWI1LWFkN2UtODcyMTg1NDE3N2I0'));
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+                        curl_setopt($ch, CURLOPT_POST, TRUE);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);    
+
+                        $response = curl_exec($ch);
+                        curl_close($ch);
+
+                        // return $response;
+                    //    $_SESSION['msg'] = "28";
+                    //   header("Location:manage_notification.php");
+                    //   exit;
+
+
+                    // $response = sendMessage();
+                    // $return["allresponses"] = $response;
+                    // $return = json_encode( $return);
+                    // // print("\n\nJSON received:\n");
+                    // // print($return);
+                    // // print("\n");
         } catch (\Exception $e) {
             Toastr::warning('Push notification failed!');
         }
@@ -108,7 +154,50 @@ class NotificationController extends Controller
 
         $data = array();
         try {
-            Helpers::send_push_notif_to_topic($notification);
+            //Helpers::send_push_notif_to_topic($notification);
+            $content = array("en" => filter_var($notification->description, FILTER_SANITIZE_STRING));
+            $heading = array("en" => filter_var($notification->title, FILTER_SANITIZE_STRING));
+
+                $fields = array(
+                    'app_id' => "c5fabebb-0e25-49e3-9438-4f1ffcfb42c5",
+                    'included_segments' => array('All'),
+                    'data' => array("foo" => "bar"),
+                    'large_icon' =>'https://srilakshminarasimarlogistics.com/ecommerce/storage/app/public/company/2023-03-27-64215b6059fef.png',
+                    'small_icon' =>'https://srilakshminarasimarlogistics.com/ecommerce/storage/app/public/company/2023-03-27-64215b6059fef.png',
+                    'contents' => $content,
+                    'headings' => $heading,
+                    'big_picture' => 'https://srilakshminarasimarlogistics.com/ecommerce/storage/app/public/notification/' . $notification->image
+                );
+
+                    $fields = json_encode($fields);
+                    // print("\nJSON sent:\n");
+                    // print($fields);
+
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+                                                                   'Authorization: Basic YWJjZGIwOTktNzE2MC00MWI1LWFkN2UtODcyMTg1NDE3N2I0'));
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+                        curl_setopt($ch, CURLOPT_POST, TRUE);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);    
+
+                        $response = curl_exec($ch);
+                        curl_close($ch);
+
+                        // return $response;
+                    //    $_SESSION['msg'] = "28";
+                    //   header("Location:manage_notification.php");
+                    //   exit;
+
+
+                    // $response = sendMessage();
+                    // $return["allresponses"] = $response;
+                    // $return = json_encode( $return);
+                    // // print("\n\nJSON received:\n");
+                    // // print($return);
+                    // // print("\n");
             $notification->notification_count += 1;
             $notification->save();
 
