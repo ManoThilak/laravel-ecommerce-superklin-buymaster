@@ -1,1 +1,3 @@
-hello its test
+Razorpay test for ebasket:
+  key id : rzp_test_YGiA3UDUhY5Wq4
+  Secret key : QsBSSfu3WMkWDxN7cDjM2BYM

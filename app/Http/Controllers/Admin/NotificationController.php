@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use App\User;
 
 class NotificationController extends Controller
 {
@@ -57,7 +58,7 @@ class NotificationController extends Controller
         $notification->status             = 1;
         $notification->notification_count = 1;
         $notification->save();
-
+        User::where('id', '>', 0)->update(['seen_notification' => 0]);
         try {
            // Helpers::send_push_notif_to_topic($notification);
            // Helpers::send_push_notif_to_device('drDCV-NyThyexVTA22VyLd:APA91bEnovra2IGAjETCh1iazmC_4K-gjhhgNz4yfy73v94VkbulNtElvN42Yo3XR07YsuU8q4MCcOGuNrGMnEx8GaA25PTSxsoZE8uTA6la_NVYPFB1Y3Nzd_wNTppZXUQdnV0qJfup', $notification);
@@ -151,7 +152,7 @@ class NotificationController extends Controller
 
     public function resendNotification(Request $request){
         $notification = Notification::find($request->id);
-
+        User::where('id', '>', 0)->update(['seen_notification' => 0]);
         $data = array();
         try {
             //Helpers::send_push_notif_to_topic($notification);

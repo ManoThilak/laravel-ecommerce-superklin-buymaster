@@ -35,7 +35,14 @@
     <div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row no-gutters py-5">
             <div class="col-lg-6 iframe-full-height-wrap ">
-                <img class="for-contac-image" src="{{asset("public/assets/front-end/png/contact.png")}}" alt="">
+                {{-- <img class="for-contac-image" src="{{asset("public/assets/front-end/png/contact.png")}}" alt=""> --}}
+                <center><h2><b><u><p >BuyMaster E-Basket Technologies</p></u></b></h2></center><br>
+                <center><h3><b><u><p >Address</u> </b></h3> 
+                <h5><b>4/31 , Bharathi Nagar,  <br> Kuruvimedu, Sankaraperi, <br>Thoothukudi - 628002</b></h5></p></center>
+                <center><h3><b><u><p >Phone</u>  </b></h3>
+                    <h5><b>9087606983</b></h5></p></center>
+                <center><h3><b><u><p >Location</u>  </b></h3></center><br>
+                {{-- <center><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.9168976739265!2d78.13889191478498!3d8.793877993684145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa8c9e268744abe53!2zOMKwNDcnMzguMCJOIDc4wrAwOCcyNy45IkU!5e0!3m2!1sen!2sin!4v1654185465557!5m2!1sen!2sin" width="600" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p></center><br> --}}
             </div>
             <div class="col-lg-6">
                 <div class="card">

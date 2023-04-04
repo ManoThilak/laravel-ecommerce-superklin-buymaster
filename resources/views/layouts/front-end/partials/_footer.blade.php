@@ -24,9 +24,9 @@
 }  
 </style>
 <div class="__inline-9 rtl">
-    <div class="d-flex justify-content-center text-center {{Session::get('direction') === "rtl" ? 'text-md-right' : 'text-md-left'}} mt-3"
-            style="background: {{$web_config['primary_color']}}10;padding:20px;">
-        <div class="col-md-3 d-flex justify-content-center">
+    {{-- <div class="d-flex justify-content-center text-center {{Session::get('direction') === "rtl" ? 'text-md-right' : 'text-md-left'}} mt-3"
+            style="background: {{$web_config['primary_color']}}10;padding:20px;"> --}}
+        {{-- <div class="col-md-3 d-flex justify-content-center">
             <div >
                 <a href="{{route('about-us')}}">
                     <div class="text-center">
@@ -57,8 +57,8 @@
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="col-md-3 d-flex justify-content-center">
+        </div> --}}
+        {{-- <div class="col-md-3 d-flex justify-content-center">
             <div >
                 <a href="{{route('helpTopic')}}">
                     <div class="text-center">
@@ -72,11 +72,11 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> --}}
         {{-- <div class="col-md-1">
 
         </div> --}}
-    </div>
+    {{-- </div> --}}
 
     <footer class="page-footer font-small mdb-color rtl">
         <!-- Footer Links -->
@@ -200,7 +200,7 @@
                                     </ul>
                                 @endif
                             </div>
-                            <div class="col-md-5 footer-padding-bottom" >
+                            {{-- <div class="col-md-5 footer-padding-bottom" >
                                     <div class="mb-2">
                                         <h6 class="text-uppercase mb-4 font-weight-bold footer-heder">{{\App\CPU\translate('NEWS LETTER')}}</h6>
                                         <span>{{\App\CPU\translate('subscribe to our new channel to get latest updates')}}</span>
@@ -215,6 +215,41 @@
                                             </button>
                                         </form>
                                     </div>
+                            </div> --}}
+                            <div class="col-md-5 footer-padding-bottom">
+                                <h6 class="text-uppercase mb-4 font-weight-bold footer-heder">{{\App\CPU\translate('about_us')}}</h6>
+                
+                
+                                <ul class="widget-list" style="padding-bottom: 10px">
+                                    
+                                    <li class="widget-list-item"><a class="widget-list-link"
+                                                                    href="{{route('about-us')}}">{{\App\CPU\translate('about_company')}}</a>
+                                    </li>
+                                    <li class="widget-list-item"><a class="widget-list-link"
+                                                                    href="{{route('helpTopic')}}">{{\App\CPU\translate('faq')}}</a></li>
+                                    <li class="widget-list-item "><a class="widget-list-link"
+                                                                     href="{{route('terms')}}">{{\App\CPU\translate('terms_&_conditions')}}</a>
+                
+                                    </li>
+                
+                                    <li class="widget-list-item ">
+                                        <a class="widget-list-link" href="{{route('privacy-policy')}}">
+                                            {{\App\CPU\translate('privacy_policy')}}
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item "><a class="widget-list-link"
+                                                                     href="{{route('contacts')}}">{{\App\CPU\translate('contact_us')}}</a>
+                
+                                    </li>
+                                    {{-- <li class="widget-list-item "><a class="widget-list-link"
+                                                                     href="{{route('refund-policy')}}">{{\App\CPU\translate('shipping_policy')}}</a>
+                
+                                    </li>
+                                    <li class="widget-list-item "><a class="widget-list-link"
+                                                                     href="{{route('return-policy')}}">{{\App\CPU\translate('return_and_refund')}}</a>
+                
+                                    </li> --}}
+                                </ul>
                             </div>
                         </div>
                         <div class="row mt-4 {{Session::get('direction') === "rtl" ? ' flex-row-reverse' : ''}}">
@@ -296,7 +331,7 @@
                             @endforeach
                         @endif
                     </div>
-                    <div class="d-flex __text-14px">
+                    {{-- <div class="d-flex __text-14px">
                         <div class="{{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}}" >
                             <a class="widget-list-link"
                             href="{{route('terms')}}">{{\App\CPU\translate('terms_&_conditions')}}</a>
@@ -306,7 +341,7 @@
                                 {{\App\CPU\translate('privacy_policy')}}
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Grid row -->

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,8 +33,106 @@ Route::group(['namespace' => 'api\v1', 'prefix' => 'v1', 'middleware' => ['api_l
         Route::post('update-phone', 'SocialAuthController@update_phone');
     });
 
-    Route::group(['prefix' => 'config'], function () {
+    // Route::group(['prefix' => 'config'], function (Request $request) {
+    //     $token = $request->bearerToken();
+
+    //     if ($token) {
+    //         Route::get('/', 'ConfigController@configuration')->middleware('auth:api');
+    //     } else {
+    //         Route::get('/', 'ConfigController@configuration');
+    //     }
+        
+    // });
+
+    // Route::group(['prefix' => 'config'], function ($router) {
+    //     $router->get('/', function () {
+    //         $request = request();
+    //         $token = $request->bearerToken();
+
+    //     if ($token) {
+    //         Route::get('/', 'ConfigController@configuration')->middleware('auth:api');
+    //     } else {
+    //         Route::get('/', 'ConfigController@configuration');
+    //     }
+    //     });
+    // });
+    // Route::get('/', 'ConfigController@configuration')->middleware(function ($request, $next) {
+        //     if ($request->query('tokenStatus') == 1) {
+        //         return $next($request)->middleware('auth:api');
+        //     }
+    
+        //     return $next($request);
+        // });
+        
+        
+        // Route::get('/{param}', 'ConfigController@configuration')->middleware(function ($request, $next) {
+        //     if ($request->route('param') == 0) {
+        //         return $next($request)->middleware('auth:api');
+        //     }
+    
+        //     return $next($request);
+        // });
+
+        // Route::get('/{param}', 'ConfigController@configuration')
+        //     ->when(fn($request) => $request->route('param') == 0);
+
+        // Route::get('/{param}', 'ConfigController@configuration')
+        //     ->middleware('auth:api')
+        //     ->when(fn($request) => $request->route('param') == 1);
+
+        
+        
+//         Route::get('/{a}',function($a){
+//     if($a == 1){
+//         return 'January';
+//     } else if($a == 0){
+//         return 'February';
+//     } 
+// });
+        
+        //  $token = $request->bearerToken();
+
+        // if ($token) {
+        //     Route::get('/', 'ConfigController@configuration')->middleware('auth:api');
+        // } else {
+        //     Route::get('/', 'ConfigController@configuration');
+        // }
+
+
+
+
+    // Route::group(['prefix' => 'config'], function ($router) {
+    //     $router->get('/', function () {
+    //         $request = request();
+    //         $token = $request->bearerToken();
+
+    //     if ($token) {
+    //         Route::get('/', 'ConfigController@configuration')->middleware('auth:api');
+    //     } else {
+    //         Route::get('/', 'ConfigController@configuration');
+    //     }
+    //     });
+    // });
+    
+    
+//     Route::get('/config', function (Request $request) {
+//     $bearerToken = $request->header('Authorization');
+//     if (preg_match('/^Bearer\s+(.*?)$/', $bearerToken, $matches)) {
+//         $token = $matches[1];
+//         // Do something with the $token variable
+//     } else {
+//         // Handle the case where the token is missing or invalid
+//     }
+// });
+
+    Route::group(['prefix' => 'config1'], function () {
+        Route::get('/', 'ConfigController@configuration1')->middleware('auth:api');
+       
+    });
+    
+     Route::group(['prefix' => 'config'], function () {
         Route::get('/', 'ConfigController@configuration');
+       
     });
 
     Route::group(['prefix' => 'shipping-method','middleware'=>'auth:api'], function () {
@@ -76,7 +174,7 @@ Route::group(['namespace' => 'api\v1', 'prefix' => 'v1', 'middleware' => ['api_l
     });
 
     Route::group(['prefix' => 'notifications'], function () {
-        Route::get('/', 'NotificationController@get_notifications');
+        Route::get('/', 'NotificationController@get_notifications')->middleware('auth:api');
     });
 
     Route::group(['prefix' => 'brands'], function () {
