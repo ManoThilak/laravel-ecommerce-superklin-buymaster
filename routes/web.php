@@ -64,6 +64,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('cancellation-policy', 'WebController@cancellation_policy')->name('cancellation-policy');
 
     Route::get('/product/{slug}', 'WebController@product')->name('product');
+    Route::get('/product/{slug}/{id}', 'WebController@product123')->name('product123');
     Route::get('products', 'WebController@products')->name('products');
     Route::get('orderDetails', 'WebController@orderdetails')->name('orderdetails');
     Route::get('discounted-products', 'WebController@discounted_products')->name('discounted-products');

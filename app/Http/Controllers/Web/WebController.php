@@ -619,6 +619,22 @@ class WebController extends Controller
         Toastr::error(translate('not_found'));
         return back();
     }
+    
+    public function product123($slug , $id)
+    {
+        $product = Product::active()->with(['reviews'])->where('slug', $slug)->first();
+        if ($product != null) {
+            $countOrder = OrderDetail::where('product_id', $product->id)->count();
+            $countWishlist = Wishlist::where('product_id', $product->id)->count();
+            $relatedProducts = Product::with(['reviews'])->active()->where('category_ids', $product->category_ids)->where('id', '!=', $product->id)->limit(12)->get();
+            $deal_of_the_day = DealOfTheDay::where('product_id', $product->id)->where('status', 1)->first();
+
+            return view('web-views.products.details', compact('product', 'countWishlist', 'countOrder', 'relatedProducts', 'deal_of_the_day'));
+        }
+
+        Toastr::error(translate('not_found'));
+        return back();
+    }
 
     public function products(Request $request)
     {
