@@ -24,59 +24,59 @@
 }  
 </style>
 <div class="__inline-9 rtl">
-    {{-- <div class="d-flex justify-content-center text-center {{Session::get('direction') === "rtl" ? 'text-md-right' : 'text-md-left'}} mt-3"
-            style="background: {{$web_config['primary_color']}}10;padding:20px;"> --}}
-        {{-- <div class="col-md-3 d-flex justify-content-center">
-            <div >
-                <a href="{{route('about-us')}}">
-                    <div class="text-center">
-                        <img class="size-60" src="{{asset("public/assets/front-end/png/about company.png")}}"
-                                alt="">
-                    </div>
-                    <div class="text-center">
+    <!--<div class="d-flex justify-content-center text-center {{Session::get('direction') === "rtl" ? 'text-md-right' : 'text-md-left'}} mt-3"-->
+    <!--        style="background: {{$web_config['primary_color']}}10;padding:20px;">-->
+    <!--    <div class="col-md-3 d-flex justify-content-center">-->
+    <!--        <div >-->
+    <!--            <a href="{{route('about-us')}}">-->
+    <!--                <div class="text-center">-->
+    <!--                    <img class="size-60" src="{{asset("public/assets/front-end/png/about company.png")}}"-->
+    <!--                            alt="">-->
+    <!--                </div>-->
+    <!--                <div class="text-center">-->
 
-                            <p class="m-0">
-                                {{ \App\CPU\translate('About Company')}}
-                            </p>
+    <!--                        <p class="m-0">-->
+    <!--                            {{ \App\CPU\translate('About Company')}}-->
+    <!--                        </p>-->
 
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3 d-flex justify-content-center">
-            <div >
-                <a href="{{route('contacts')}}">
-                    <div class="text-center">
-                        <img class="size-60" src="{{asset("public/assets/front-end/png/contact us.png")}}"
-                                alt="">
-                    </div>
-                    <div class="text-center">
-                        <p class="m-0">
-                        {{ \App\CPU\translate('Contact Us')}}
-                    </p>
-                    </div>
-                </a>
-            </div>
-        </div> --}}
-        {{-- <div class="col-md-3 d-flex justify-content-center">
-            <div >
-                <a href="{{route('helpTopic')}}">
-                    <div class="text-center">
-                        <img class="size-60" src="{{asset("public/assets/front-end/png/faq.png")}}"
-                                alt="">
-                    </div>
-                    <div class="text-center">
-                        <p class="m-0">
-                        {{ \App\CPU\translate('FAQ')}}
-                    </p>
-                    </div>
-                </a>
-            </div>
-        </div> --}}
-        {{-- <div class="col-md-1">
+    <!--                </div>-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="col-md-3 d-flex justify-content-center">-->
+    <!--        <div >-->
+    <!--            <a href="{{route('contacts')}}">-->
+    <!--                <div class="text-center">-->
+    <!--                    <img class="size-60" src="{{asset("public/assets/front-end/png/contact us.png")}}"-->
+    <!--                            alt="">-->
+    <!--                </div>-->
+    <!--                <div class="text-center">-->
+    <!--                    <p class="m-0">-->
+    <!--                    {{ \App\CPU\translate('Contact Us')}}-->
+    <!--                </p>-->
+    <!--                </div>-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="col-md-3 d-flex justify-content-center">-->
+    <!--        <div >-->
+    <!--            <a href="{{route('helpTopic')}}">-->
+    <!--                <div class="text-center">-->
+    <!--                    <img class="size-60" src="{{asset("public/assets/front-end/png/faq.png")}}"-->
+    <!--                            alt="">-->
+    <!--                </div>-->
+    <!--                <div class="text-center">-->
+    <!--                    <p class="m-0">-->
+    <!--                    {{ \App\CPU\translate('FAQ')}}-->
+    <!--                </p>-->
+    <!--                </div>-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    {{-- <div class="col-md-1">-->
 
-        </div> --}}
-    {{-- </div> --}}
+    <!--    </div> --}}-->
+    <!--</div>-->
 
     <footer class="page-footer font-small mdb-color rtl">
         <!-- Footer Links -->
@@ -169,7 +169,7 @@
                                                                         href="{{route('refund-policy')}}">{{\App\CPU\translate('refund_policy')}}</a>
                                         </li>
                                         <li class="widget-list-item"><a class="widget-list-link"
-                                                                        href="{{route('return-policy')}}">{{\App\CPU\translate('return_policy')}}</a>
+                                                                        href="{{route('return-policy')}}">{{\App\CPU\translate('return_and_refund_policy')}}</a>
                                         </li>
                                         <li class="widget-list-item"><a class="widget-list-link"
                                                                         href="{{route('cancellation-policy')}}">{{\App\CPU\translate('cancellation_policy')}}</a>
@@ -200,22 +200,22 @@
                                     </ul>
                                 @endif
                             </div>
-                            {{-- <div class="col-md-5 footer-padding-bottom" >
-                                    <div class="mb-2">
-                                        <h6 class="text-uppercase mb-4 font-weight-bold footer-heder">{{\App\CPU\translate('NEWS LETTER')}}</h6>
-                                        <span>{{\App\CPU\translate('subscribe to our new channel to get latest updates')}}</span>
-                                    </div>
-                                    <div class="text-nowrap mb-4 position-relative">
-                                        <form action="{{ route('subscription') }}" method="post">
-                                            @csrf
-                                            <input type="email" name="subscription_email" class="form-control subscribe-border"
-                                                placeholder="{{\App\CPU\translate('Your Email Address')}}" required style="padding: 11px;text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                            <button class="subscribe-button" type="submit">
-                                                {{\App\CPU\translate('subscribe')}}
-                                            </button>
-                                        </form>
-                                    </div>
-                            </div> --}}
+                            <!--<div class="col-md-5 footer-padding-bottom" >-->
+                            <!--        <div class="mb-2">-->
+                            <!--            <h6 class="text-uppercase mb-4 font-weight-bold footer-heder">{{\App\CPU\translate('NEWS LETTER')}}</h6>-->
+                            <!--            <span>{{\App\CPU\translate('subscribe to our new channel to get latest updates')}}</span>-->
+                            <!--        </div>-->
+                            <!--        <div class="text-nowrap mb-4 position-relative">-->
+                            <!--            <form action="{{ route('subscription') }}" method="post">-->
+                            <!--                @csrf-->
+                            <!--                <input type="email" name="subscription_email" class="form-control subscribe-border"-->
+                            <!--                    placeholder="{{\App\CPU\translate('Your Email Address')}}" required style="padding: 11px;text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">-->
+                            <!--                <button class="subscribe-button" type="submit">-->
+                            <!--                    {{\App\CPU\translate('subscribe')}}-->
+                            <!--                </button>-->
+                            <!--            </form>-->
+                            <!--        </div>-->
+                            <!--</div>-->
                             <div class="col-md-5 footer-padding-bottom">
                                 <h6 class="text-uppercase mb-4 font-weight-bold footer-heder">{{\App\CPU\translate('about_us')}}</h6>
                 
@@ -316,7 +316,7 @@
                 <div class="row end-footer footer-end last-footer-content-align">
                     <div class=" mt-3">
                         <!--<p class="{{Session::get('direction') === "rtl" ? 'text-right ' : 'text-left'}} __text-16px">{{ $web_config['copyright_text']->value }}</p>-->
-                         <p class="{{Session::get('direction') === "rtl" ? 'text-right ' : 'text-left'}} __text-16px"> Copyright © <?php echo date('Y')?>  Buy Master | E-Basket Technology | All rights reserved | Powered By : <a style="color: rgb(250 0 0);" onmouseover="this.style.color='rgb(250 0 0)'" onmouseout="this.style.color='rgb(250 0 0)'" class="jellysoft" href="https://jellysoft.in" target="_blank">Jellysoft</a></span></p>
+                         <p class="{{Session::get('direction') === "rtl" ? 'text-right ' : 'text-left'}} __text-16px"> Copyright © <?php echo date('Y')?>  Buy Master | E - BASKET TECHNOLOGIES | All rights reserved | Powered By : <a style="color: rgb(250 0 0);" onmouseover="this.style.color='rgb(250 0 0)'" onmouseout="this.style.color='rgb(250 0 0)'" class="jellysoft" href="https://jellysoft.in" target="_blank">Jellysoft</a></span></p>
                     </div>
                     <div class="mt-md-3 mt-0 mb-md-3 {{Session::get('direction') === "rtl" ? 'text-right' : 'text-left'}}">
                         @php($social_media = \App\Model\SocialMedia::where('active_status', 1)->get())
@@ -331,17 +331,17 @@
                             @endforeach
                         @endif
                     </div>
-                    {{-- <div class="d-flex __text-14px">
-                        <div class="{{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}}" >
-                            <a class="widget-list-link"
-                            href="{{route('terms')}}">{{\App\CPU\translate('terms_&_conditions')}}</a>
-                        </div>
-                        <div>
-                            <a class="widget-list-link" href="{{route('privacy-policy')}}">
-                                {{\App\CPU\translate('privacy_policy')}}
-                            </a>
-                        </div>
-                    </div> --}}
+                    <!--<div class="d-flex __text-14px">-->
+                    <!--    <div class="{{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}}" >-->
+                    <!--        <a class="widget-list-link"-->
+                    <!--        href="{{route('terms')}}">{{\App\CPU\translate('terms_&_conditions')}}</a>-->
+                    <!--    </div>-->
+                    <!--    <div>-->
+                    <!--        <a class="widget-list-link" href="{{route('privacy-policy')}}">-->
+                    <!--            {{\App\CPU\translate('privacy_policy')}}-->
+                    <!--        </a>-->
+                    <!--    </div>-->
+                    <!--</div>-->
                 </div>
             </div>
             <!-- Grid row -->

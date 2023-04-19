@@ -33,7 +33,7 @@
      </div>
     <!-- <strong>Copyright &copy; <?php echo date('Y')?> <a href="https://jellysoft.in" data-toggle="tab">Jellysoft</a>.</strong> All rights
     reserved. -->
-    <strong>Copyright © <?php echo date('Y')?> Buy Master | E-Basket Technology | All rights reserved | <span>Powered By : <a style="color: rgb(250 0 0);" onmouseover="this.style.color='rgb(250 0 0)'" onmouseout="this.style.color='rgb(250 0 0)'" class="jellysoft" href="https://jellysoft.in" target="_blank">Jellysoft</a></span></strong> 
+    <strong>Copyright © <?php echo date('Y')?> Buy Master | E - BASKET TECHNOLOGIES | All rights reserved | <span>Powered By : <a style="color: rgb(250 0 0);" onmouseover="this.style.color='rgb(250 0 0)'" onmouseout="this.style.color='rgb(250 0 0)'" class="jellysoft" href="https://jellysoft.in" target="_blank">Jellysoft</a></span></strong> 
   </footer>
 
         <div class="col-lg-8">

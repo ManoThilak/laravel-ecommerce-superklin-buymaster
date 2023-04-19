@@ -117,10 +117,10 @@
                                     </td>
                                     <td>
                                         <div class="d-flex gap-10">
-                                            <a class="btn btn-outline-info btn-sm square-btn" title="{{ \App\CPU\translate('barcode') }}"
+                                            <!-- <a class="btn btn-outline-info btn-sm square-btn" title="{{ \App\CPU\translate('barcode') }}"
                                                 href="{{ route('seller.product.barcode', [$p['id']]) }}">
                                                 <i class="tio-barcode"></i>
-                                            </a>
+                                            </a> -->
 
                                             <a class="btn btn-outline-info btn-sm square-btn"
                                                 title="{{\App\CPU\translate('view')}}"
