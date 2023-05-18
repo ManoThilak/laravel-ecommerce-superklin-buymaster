@@ -445,10 +445,55 @@ class WebController extends Controller
     public function shop_cart(Request $request)
     {
         if (auth('customer')->check() && Cart::where(['customer_id' => auth('customer')->id()])->count() > 0) {
+        //     // $otherController = new SystemController();
+        //     // $request->cart_group_id = 'all_cart_group';
+        //     // $request->id = '2';
+        //    // dd($request);
+        //     //$otherController->set_shipping_method($request);
+
+        //    // if ($request['cart_group_id'] == 'all_cart_group') {
+            
+        //         foreach (CartManager::get_cart_group_ids() as $group_id) {
+        //             $request['id'] = '2';
+        //             $request['cart_group_id'] = $group_id;
+        //             self::insert_into_cart_shipping($request);
+        //         }
+        //   //  } 
+
             return view('web-views.shop-cart');
         }
         Toastr::info(translate('no_items_in_basket'));
         return redirect('/');
+    }
+
+
+    public function set_shipping_method(Request $request)
+    {
+        if ($request['cart_group_id'] == 'all_cart_group') {
+            foreach (CartManager::get_cart_group_ids() as $group_id) {
+                $request['cart_group_id'] = $group_id;
+                self::insert_into_cart_shipping($request);
+            }
+        } 
+        else {
+            self::insert_into_cart_shipping($request);
+        }
+
+        return response()->json([
+            'status' => 1
+        ]);
+    }
+
+    public static function insert_into_cart_shipping($request)
+    {
+        $shipping = CartShipping::where(['cart_group_id' => $request['cart_group_id']])->first();
+        if (isset($shipping) == false) {
+            $shipping = new CartShipping();
+        }
+        $shipping['cart_group_id'] = $request['cart_group_id'];
+        $shipping['shipping_method_id'] = $request['id'];
+        $shipping['shipping_cost'] = ShippingMethod::find($request['id'])->cost;
+        $shipping->save();
     }
 
     //for seller Shop

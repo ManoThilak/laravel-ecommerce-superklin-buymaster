@@ -53,7 +53,8 @@ class SellerController extends Controller
                 }
             })
             ->latest()
-            ->paginate($request->limit, ['*'], 'page', $request->offset);
+            ->paginate(10000, ['*'], 'page', $request->offset);
+            // ->paginate($request->limit, ['*'], 'page', $request->offset);
 
 
         $products_final = Helpers::product_data_formatting($products->items(), true);

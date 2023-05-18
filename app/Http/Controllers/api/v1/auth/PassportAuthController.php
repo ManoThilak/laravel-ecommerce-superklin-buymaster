@@ -103,7 +103,8 @@ class PassportAuthController extends Controller
             return response()->json(['token' => $token], 200);
         } else {
             $errors = [];
-            array_push($errors, ['code' => 'auth-001', 'message' => translate('Customer_not_found_or_Account_has_been_suspended')]);
+            //array_push($errors, ['code' => 'auth-001', 'message' => translate('Customer_not_found_or_Account_has_been_suspended')]);
+            array_push($errors, ['code' => 'auth-001', 'message' =>  'Invalid email address or phone number']);
             return response()->json([
                 'errors' => $errors
             ], 401);

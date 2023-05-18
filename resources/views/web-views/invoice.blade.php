@@ -232,12 +232,25 @@
 @endphp
 
 <div class="first">
+    <table class="">
+        <tr>
+            <th style="padding-left: 60%;">
+                <h4 class="fz-12 mb-1">{{\App\CPU\translate('payment_details')}}</h4>
+                <h5 class="fz-12 mb-1 font-weight-normal">{{ str_replace('_',' ',$order->payment_method) }}</h5>
+                <p class="fz-12 font-weight-normal">{{strtoupper($order->payment_status)}}
+                    , {{date('y-m-d',strtotime($order['created_at']))}}</p>
+                <p class="fz-12 font-weight-normal"><b>{{\App\CPU\translate('total')}}</b>
+                    {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($order->order_amount))}}</p>
+            </th>
+        </tr>
+    </table>
     <table class="content-position mb-30">
         <tr>
             <th>
                 <img height="50" src="{{asset("storage/app/public/company/$company_web_logo")}}" alt="">
             </th>
         </tr>
+        
     </table>
 
     <table class="bs-0 mb-30 px-10">
@@ -328,6 +341,10 @@
     </div>
 @endif
 
+<br>
+    <div class="border-dashed-top font-weight-bold"></div>
+    <div class="border-dashed-top font-weight-bold"></div>
+    <div class="border-dashed-top font-weight-bold"></div>
 <br>
 
 <div>

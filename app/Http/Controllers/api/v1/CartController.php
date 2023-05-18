@@ -9,6 +9,8 @@ use App\Model\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use function App\CPU\translate;
+use App\Model\CartShipping;
+use App\Model\ShippingMethod;
 
 class CartController extends Controller
 {
@@ -66,7 +68,56 @@ class CartController extends Controller
         }
 
         $cart = CartManager::add_to_cart($request);
+
+
+        // $request['id'] = '2';
+        // $request['cart_group_id'] = 'all_cart_group';
+        // foreach (CartManager::get_cart_group_ids($request) as $group_id) {
+        //     $request['cart_group_id'] = $group_id;
+        //     self::insert_into_cart_shipping($request);
+        // }
+        
+
         return response()->json($cart, 200);
+    }
+
+
+
+    public function choose_for_order(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'cart_group_id' => 'required',
+            'id' => 'required'
+        ], [
+            'id.required' => translate('shipping_id_is_required')
+        ]);
+
+        if ($validator->errors()->count() > 0) {
+            return response()->json(['errors' => Helpers::error_processor($validator)]);
+        }
+
+        if ($request['cart_group_id'] == 'all_cart_group') {
+            foreach (CartManager::get_cart_group_ids($request) as $group_id) {
+                $request['cart_group_id'] = $group_id;
+                self::insert_into_cart_shipping($request);
+            }
+        } else {
+            self::insert_into_cart_shipping($request);
+        }
+
+        return response()->json(translate('successfully_added'));
+    }
+
+    public static function insert_into_cart_shipping($request)
+    {
+        $shipping = CartShipping::where(['cart_group_id' => $request['cart_group_id']])->first();
+        if (isset($shipping) == false) {
+            $shipping = new CartShipping();
+        }
+        $shipping['cart_group_id'] = $request['cart_group_id'];
+        $shipping['shipping_method_id'] = $request['id'];
+        $shipping['shipping_cost'] = ShippingMethod::find($request['id'])->cost;
+        $shipping->save();
     }
 
     public function update_cart(Request $request)

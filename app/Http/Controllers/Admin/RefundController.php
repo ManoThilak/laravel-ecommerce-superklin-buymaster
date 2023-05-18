@@ -155,7 +155,9 @@ class RefundController extends Controller
                 $refund_status->message = $request->rejected_note;
             }
             elseif($request->refund_status == 'refunded')
-            {
+            {   
+                $order->order_status = 'returned';
+                $order->save();
                 $order_details->refund_request = 4;
                 $refund->payment_info = $request->payment_info;
                 $refund_status->message = $request->payment_info;
