@@ -25,6 +25,7 @@ use Rap2hpoutre\FastExcel\FastExcel;
 use function App\CPU\translate;
 use App\Model\Cart;
 
+
 class ProductController extends BaseController
 {
     public function add_new()
@@ -307,10 +308,23 @@ class ProductController extends BaseController
     {
         $query_param = [];
         $search = $request['search'];
+        $seller_id = $request['seller_id'];
+        $sku = $request['sku'];
         if ($type == 'in_house') {
             $pro = Product::where(['added_by' => 'admin']);
         } else {
-            $pro = Product::where(['added_by' => 'seller'])->where('request_status', $request->status);
+            $pro = Product::where(['added_by' => 'seller'])->where('request_status', $request->status)->when(empty($request['seller_id']) || $request['seller_id'] == 'all', function ($query) {
+                $query->whereIn('added_by', ['admin', 'seller']);
+            })
+                ->when($request['seller_id'] == 'in_house', function ($query) {
+                    $query->where(['added_by' => 'admin']);
+                })
+                ->when($request['seller_id'] != 'in_house' && isset($request['seller_id']) && $request['seller_id'] != 'all', function ($query) use ($request) {
+                    $query->where(['added_by' => 'seller', 'user_id' => $request['seller_id']]);
+                })
+                ->when($sku, function ($q) use ($sku) {
+                    $q->where('code', 'Like', '%' . $sku . '%');
+                });
         }
 
         if ($request->has('search')) {
@@ -320,12 +334,12 @@ class ProductController extends BaseController
                     $q->Where('name', 'like', "%{$value}%");
                 }
             });
-            $query_param = ['search' => $request['search']];
+           // $query_param = ['search' => $request['search']];
         }
-
+        $query_param = ['search' => $search, 'sku' => $sku, 'seller_id' => $seller_id];
         $request_status = $request['status'];
         $pro = $pro->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends(['status' => $request['status']])->appends($query_param);
-        return view('admin-views.product.list', compact('pro', 'search', 'request_status', 'type'));
+        return view('admin-views.product.list', compact('pro', 'search', 'request_status', 'type', 'seller_id','sku'));
     }
 
     /**
@@ -993,6 +1007,109 @@ class ProductController extends BaseController
         $product = Product::findOrFail($id);
         $limit =  $request->limit ?? 4;
         return view('admin-views.product.barcode', compact('product', 'limit'));
+    }
+    public function export(Request $request)
+    {
+
+
+
+
+
+        $query_param = [];
+       // $search = $request['search'];
+        $seller_id = $request['seller_id'];
+        $sku = $request['sku'];
+
+       // dd("sku is" .$sku . "seller is" . $seller_id) ;
+        // if ($type == 'in_house') {
+        //     $pro = Product::where(['added_by' => 'admin']);
+        // } else {
+            $pro = Product::where(['added_by' => 'seller'])->where('request_status', $request->status)->when(empty($request['seller_id']) || $request['seller_id'] == 'all', function ($query) {
+                $query->whereIn('added_by', ['admin', 'seller']);
+            })
+                ->when($request['seller_id'] == 'in_house', function ($query) {
+                    $query->where(['added_by' => 'admin']);
+                })
+                ->when($request['seller_id'] != 'in_house' && isset($request['seller_id']) && $request['seller_id'] != 'all', function ($query) use ($request) {
+                    $query->where(['added_by' => 'seller', 'user_id' => $request['seller_id']]);
+                })
+                ->when($sku, function ($q) use ($sku) {
+                    $q->where('code', 'Like', '%' . $sku . '%');
+                })->orderBy('id', 'DESC')->get();
+        // }
+               // dd($pro);
+        // if ($request->has('search')) {
+        //     $key = explode(' ', $request['search']);
+        //     $pro = $pro->where(function ($q) use ($key) {
+        //         foreach ($key as $value) {
+        //             $q->Where('name', 'like', "%{$value}%");
+        //         }
+        //     });
+        // }
+       // $query_param = ['search' => $search, 'sku' => $sku, 'seller_id' => $seller_id];
+       // $request_status = $request['status'];
+        // $pro = $pro->orderBy('id', 'DESC')->get();
+        // $pro = $pro->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends(['status' => $request['status']])->appends($query_param);
+        // return view('admin-views.product.list', compact('pro', 'search', 'request_status', 'type', 'seller_id','sku'));
+            
+        $data = array();
+        
+        foreach ($pro as $product) {
+            if($product->added_by == 'admin') {
+                $seller_name ='Admin';
+            } else {
+                $seller_name = $product->seller->f_name . " " .$product->seller->l_name;
+            }
+            $data[] = array(
+                'Seller Name'           => $seller_name,
+                'Product Name'          => $product->name,
+                'SKU'                   => $product->code,
+                'Product Type'          => $product->product_type,
+                'unit'                  => $product->unit,
+                'unit_price'            => $product->unit_price,
+                'purchase_price'        => $product->purchase_price,
+                'tax'                   => $product->tax,
+                'discount'              => $product->discount,
+                'discount_type'         => $product->discount_type,
+                'Date'                  => date('d M Y', strtotime($product->created_at)),
+                'Status'                => $product->status==1 ? 'Active':'Inactive',
+            );
+        }
+        
+
+        return (new FastExcel($data))->download('seller_products.xlsx');
+
+
+
+
+
+
+
+
+
+        // $sort = $request['sort'] ?? 'ASC';
+
+        // $products = Product::where(['product_type' => 'physical'])->when(empty($request['seller_id']) || $request['seller_id'] == 'all', function ($query) {
+        //     $query->whereIn('added_by', ['admin', 'seller']);
+        // })
+        //     ->when($request['seller_id'] == 'in_house', function ($query) {
+        //         $query->where(['added_by' => 'admin']);
+        //     })
+        //     ->when($request['seller_id'] != 'in_house' && isset($request['seller_id']) && $request['seller_id'] != 'all', function ($query) use ($request) {
+        //         $query->where(['added_by' => 'seller', 'user_id' => $request['seller_id']]);
+        //     })
+        //     ->orderBy('current_stock', $sort)->get();
+
+        // $data = array();
+        // foreach ($products as $product) {
+        //     $data[] = array(
+        //         'Product Name' => $product->name,
+        //         'Date' => date('d M Y', strtotime($product->created_at)),
+        //         'Total Stock' => $product->current_stock,
+        //     );
+        // }
+
+        // return (new FastExcel($data))->download('total_product_stock.xlsx');
     }
 
 }

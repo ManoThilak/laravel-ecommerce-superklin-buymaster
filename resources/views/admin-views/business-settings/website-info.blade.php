@@ -736,7 +736,7 @@
             </div>
 
             <!-- Business Information -->
-            <div class="card mb-3">
+            {{-- <div class="card mb-3">
                 <div class="card-header">
                     <h5 class="mb-0 text-capitalize d-flex gap-1">
                         <i class="tio-briefcase"></i>
@@ -926,7 +926,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row">
                 <div class="col-md-4 mb-3">

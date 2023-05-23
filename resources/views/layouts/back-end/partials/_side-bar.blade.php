@@ -450,7 +450,7 @@
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{(Request::is('admin/coupon*') || Request::is('admin/deal*'))?'block':'none'}}">
-                                <!-- <li class="navbar-vertical-aside-has-menu {{Request::is('admin/coupon*')?'active':''}}">
+                                 <li class="navbar-vertical-aside-has-menu {{Request::is('admin/coupon*')?'active':''}}">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link"
                                        href="{{route('admin.coupon.add-new')}}"
                                        title="{{\App\CPU\translate('coupon')}}">
@@ -458,7 +458,7 @@
                                         <span
                                             class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('coupon')}}</span>
                                     </a>
-                                </li> -->
+                                </li> 
                                 <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/deal/flash') || (Request::is('admin/deal/update*')))?'active':''}}">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link"
                                        href="{{route('admin.deal.flash')}}"
@@ -500,7 +500,7 @@
                                 </span>
                             </a>
                         </li>
-                        <!-- <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/announcement')?'active':''}}">
+                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/announcement')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{route('admin.business-settings.announcement')}}"
                                title="{{\App\CPU\translate('announcement')}}">
@@ -509,7 +509,7 @@
                                     {{\App\CPU\translate('announcement')}}
                                 </span>
                             </a>
-                        </li> -->
+                        </li> 
                         <!--promotion management end-->
                         @endif
 

@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 use App\Model\Review;
 use App\Model\OrderTransaction;
 use App\Model\DeliveryMan;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class SellerController extends Controller
 {
@@ -288,5 +289,27 @@ class SellerController extends Controller
     public function add_seller()
     {
         return view('admin-views.seller.add-new-seller');
+    }
+    public function export(Request $request){
+
+        $search = $request['search'];
+        if ($request->has('search')) {
+            $key = explode(' ', $request['search']);
+            $sellers = Seller::with(['orders', 'product'])
+                ->where(function ($q) use ($key) {
+                    foreach ($key as $value) {
+                        $q->orWhere('f_name', 'like', "%{$value}%")
+                            ->orWhere('l_name', 'like', "%{$value}%")
+                            ->orWhere('phone', 'like', "%{$value}%")
+                            ->orWhere('email', 'like', "%{$value}%");
+                    }
+                });
+            $query_param = ['search' => $request['search']];
+        } else {
+            $sellers = Seller::with(['orders', 'product']);
+        }
+        $items = $sellers->latest()->get();
+
+        return (new FastExcel($items))->download('sellers_list.xlsx');
     }
 }

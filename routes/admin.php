@@ -273,7 +273,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('withdraw-status/{id}', 'SellerController@withdrawStatus')->name('withdraw_status');
             Route::get('withdraw_list', 'SellerController@withdraw')->name('withdraw_list');
             Route::get('withdraw-view/{withdraw_id}/{seller_id}', 'SellerController@withdraw_view')->name('withdraw_view');
-
+            Route::get('export', 'SellerController@export')->name('export');
             Route::post('sales-commission-update/{id}', 'SellerController@sales_commission_update')->name('sales-commission-update');
         });
         Route::group(['prefix' => 'product', 'as' => 'product.','middleware'=>['module:product_management']], function () {
@@ -282,6 +282,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('remove-image', 'ProductController@remove_image')->name('remove-image');
             Route::post('status-update', 'ProductController@status_update')->name('status-update');
             Route::get('list/{type}', 'ProductController@list')->name('list');
+            Route::get('seller-product-export', 'ProductController@export')->name('seller-product-export');
             Route::get('export-excel/{type}', 'ProductController@export_excel')->name('export-excel');
             Route::get('stock-limit-list/{type}', 'ProductController@stock_limit_list')->name('stock-limit-list');
             Route::get('get-variations', 'ProductController@get_variations')->name('get-variations');
@@ -579,7 +580,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('chat', 'ChattingController@chat')->name('chat');
             Route::get('ajax-message-by-delivery-man', 'ChattingController@ajax_message_by_delivery_man')->name('ajax-message-by-delivery-man');
             Route::post('admin-message-store', 'ChattingController@ajax_admin_message_store')->name('ajax-admin-message-store');
-
+            Route::get('export', 'DeliveryManController@export')->name('export');
             Route::group(['prefix' => 'emergency-contact', 'as' => 'emergency-contact.'], function (){
                 Route::get('/', 'EmergencyContactController@emergency_contact')->name('index');
                 Route::post('add', 'EmergencyContactController@add')->name('add');

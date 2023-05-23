@@ -16,6 +16,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use function App\CPU\translate;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class DeliveryManController extends Controller
 {
@@ -332,6 +333,56 @@ class DeliveryManController extends Controller
         $five = $reviews_collection->where('rating', 5)->count();
 
         return view('admin-views.delivery-man.rating', compact('delivery_man', 'average_setting', 'reviews', 'total', 'one', 'two', 'three', 'four', 'five', 'from_date', 'to_date', 'rating', 'search'));
+    }
+    public function export(Request $request){
+
+
+
+
+        $query_param = [];
+        $search = $request['search'];
+
+        $delivery_men = DeliveryMan::with(['rating']);
+
+        if ($request->has('search')) {
+            $key = explode(' ', $request['search']);
+            $delivery_men = $delivery_men->where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('f_name', 'like', "%{$value}%")
+                        ->orWhere('l_name', 'like', "%{$value}%")
+                        ->orWhere('phone', 'like', "%{$value}%");
+                }
+            });
+            $query_param = ['search' => $request['search']];
+        }
+
+        // $delivery_men = $delivery_men->withCount(['orders' => function($q){
+        //                     return $q;
+        //                 }])
+        //                 ->where(['seller_id' => 0])
+        //                 ->latest()
+        //                 ->paginate(25)
+        //                 ->appends($query_param);
+
+        // $search = $request['search'];
+        // if ($request->has('search')) {
+        //     $key = explode(' ', $request['search']);
+        //     $sellers = Seller::with(['orders', 'product'])
+        //         ->where(function ($q) use ($key) {
+        //             foreach ($key as $value) {
+        //                 $q->orWhere('f_name', 'like', "%{$value}%")
+        //                     ->orWhere('l_name', 'like', "%{$value}%")
+        //                     ->orWhere('phone', 'like', "%{$value}%")
+        //                     ->orWhere('email', 'like', "%{$value}%");
+        //             }
+        //         });
+        //     $query_param = ['search' => $request['search']];
+        // } else {
+        //     $sellers = Seller::with(['orders', 'product']);
+        // }
+        $items = $delivery_men->latest()->get();
+
+        return (new FastExcel($items))->download('deliveryman_list.xlsx');
     }
 
 }

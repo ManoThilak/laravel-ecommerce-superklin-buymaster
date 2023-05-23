@@ -39,12 +39,26 @@
                                 </form>
                                 <!-- End Search -->
                             </div>
-                            <div class="col-sm-4 col-md-6 col-lg-8 mb-2 mb-sm-0">
+                            
+                            <div class="col-sm-4 col-md-6 col-lg-4 mb-2 mb-sm-0">
                                 <div class="d-flex gap-2 justify-content-end">
                                     <a href="{{route('admin.sellers.seller-add')}}" type="button" class="btn btn--primary text-nowrap">
                                         <i class="tio-add"></i>
                                         {{\App\CPU\translate('add_new_seller')}}
                                     </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-6 col-lg-4 mb-2 mb-sm-0">
+                                <div class="d-flex justify-content-sm-end">
+                                    <button type="button" class="btn btn-outline--primary" data-toggle="dropdown">
+                                        <i class="tio-download-to"></i>
+                                        {{\App\CPU\translate('export')}}
+                                        <i class="tio-chevron-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a class="dropdown-item" href="{{route('admin.sellers.export')}}">{{\App\CPU\translate('excel')}}</a></li>
+                                        <div class="dropdown-divider"></div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

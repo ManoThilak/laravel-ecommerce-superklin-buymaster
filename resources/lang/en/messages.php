@@ -2723,4 +2723,5 @@
   'Fill_all_required_fields_of_shipping/billing_address' => 'Fill all required fields of shipping/billing address',
   'Return and Refund' => 'Return and Refund',
   ' ' => ' ',
+  'Search SKU' => 'Search SKU',
 );

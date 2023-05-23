@@ -26,8 +26,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="px-3 py-4">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4">
+                    <div class="row gy-2 gx-1 align-items-center">
+                        <div class="col-xl-3">
                             <!-- Search -->
                             <form action="{{ url()->current() }}" method="GET">
                                 <div class="input-group input-group-custom input-group-merge">
@@ -45,6 +45,7 @@
                             </form>
                             <!-- End Search -->
                         </div>
+                        @if($type == 'in_house')
                         <div class="col-lg-8 mt-3 mt-lg-0 d-flex flex-wrap gap-3 justify-content-lg-end">
                             @if($type == 'in_house')
                             <div>
@@ -69,6 +70,72 @@
                                 </a>
                             @endif
                         </div>
+                        @endif
+                        @if($type == 'seller')
+                            <div class="col-xl-9">
+                                <form class="width-100" action="{{ url()->current() }}" id="form-data" method="get">
+                                    <input type="hidden" value="{{ $request_status }}" name="status">
+                                    <div class="row gx-1 align-items-center gy-2 text-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}">
+                                        <div class="col-md-1" style="text-align: right;">
+                                            <div class="">
+                                                <label for="exampleInputEmail1">{{\App\CPU\translate('Seller')}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="">
+                                                <select
+                                                    class="js-select2-custom form-control text-ellipsis"
+                                                    name="seller_id">
+                                                    <option value="all" {{ $seller_id == 'all' ? 'selected' : '' }}>{{\App\CPU\translate('All')}}</option>
+                                                    {{-- <option value="in_house" {{ $seller_id == 'in_house' ? 'selected' : '' }}>{{\App\CPU\translate('In-House')}}</option> --}}
+                                                    @foreach(\App\Model\Seller::where(['status'=>'approved'])->get() as $seller)
+                                                        <option value="{{ $seller['id'] }}" {{ $seller_id == $seller['id'] ? 'selected' : '' }}>
+                                                            {{$seller['f_name']}} {{$seller['l_name']}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1" style="text-align: right;">
+                                            <div class="">
+                                                <label for="exampleInputEmail1">{{\App\CPU\translate('SKU')}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{-- <div class="">
+                                                <select
+                                                    class="form-control"
+                                                    name="sort">
+                                                    <option value="ASC" {{ $sort == 'ASC' ? 'selected' : '' }}>{{\App\CPU\translate('sort_by_(low_to_high)')}}</option>
+                                                    <option value="DESC" {{ $sort == 'DESC' ? 'selected' : '' }}>{{\App\CPU\translate('sort_by_(high_to_low)')}}</option>
+                                                </select>
+                                            </div> --}}
+                                            <input id="sku_" type="number" name="sku" class="form-control"
+                                           placeholder="{{\App\CPU\translate('Search SKU')}}" 
+                                           value="{{ $sku }}" >
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn--primary btn-block" onclick="formUrlChange(this)" data-action="{{ url()->current() }}">
+                                                {{\App\CPU\translate('Filter')}}
+                                            </button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div>
+                                                <button type="button" class="btn btn-outline--primary text-nowrap btn-block" data-toggle="dropdown">
+                                                    <i class="tio-download-to"></i>
+                                                    {{ \App\CPU\translate('Export') }}
+                                                    <i class="tio-chevron-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a class="dropdown-item" href="{{ route('admin.product.seller-product-export', ['seller_id' => request('seller_id'), 'sku' => request('sku'), 'status' => request('status')]) }}">{{\App\CPU\translate('excel')}}</a></li>
+                                                    <div class="dropdown-divider"></div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            @endif
                     </div>
                 </div>
 
@@ -77,6 +144,7 @@
                         <thead class="thead-light thead-50 text-capitalize">
                             <tr>
                                 <th>{{\App\CPU\translate('SL')}}</th>
+                                <th>{{\App\CPU\translate('seller_name')}}</th>
                                 <th>{{\App\CPU\translate('Product Name')}}</th>
                                 <th class="text-right">{{\App\CPU\translate('Product Type')}}</th>
                                 <th class="text-right">{{\App\CPU\translate('purchase_price')}}</th>
@@ -90,6 +158,24 @@
                         @foreach($pro as $k=>$p)
                             <tr>
                                 <th scope="row">{{$pro->firstItem()+$k}}</th>
+                                {{-- @php if($p->added_by == 'admin') { @endphp
+                                <td>
+                                    {{" Admin "}}
+                                </td>
+                                @php } else { @endphp
+                                <td>
+                                    {{$p->seller->f_name . " " .$p->seller->l_name}}
+                                </td>
+                                @php } @endphp --}}
+                                @if($p->added_by == 'admin')
+                                    <td>
+                                        {{" Admin "}}
+                                    </td>
+                                @else
+                                    <td>
+                                        {{$p->seller->f_name . " " .$p->seller->l_name}}
+                                    </td>
+                                @endif
                                 <td>
                                     <a href="{{route('admin.product.view',[$p['id']])}}" class="media align-items-center gap-2">
                                         <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$p['thumbnail']}}"

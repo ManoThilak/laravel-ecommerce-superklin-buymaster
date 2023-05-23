@@ -108,6 +108,9 @@
                             <tr>
                                 <th>{{\App\CPU\translate('SL')}}</th>
                                 <th>
+                                    {{\App\CPU\translate('seller_name')}}
+                                </th>
+                                <th>
                                     {{\App\CPU\translate('Product Name')}}
                                 </th>
                                 <th>
@@ -122,7 +125,25 @@
                             @foreach($products as $key=>$data)
                                 <tr>
                                     <th scope="row">{{$products->firstItem()+$key}}</th>
-                                    <td>{{$data['name']}}</td>
+                                    {{-- <td>{{$data['name']}}</td> --}}
+                                    <td>
+                                        {{$data->seller->f_name . " " .$data->seller->l_name}}
+                                    </td>
+
+                                    <td>
+                                        <a href="{{route('admin.product.view',[$data['id']])}}" class="media align-items-center gap-2">
+                                            <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$data['thumbnail']}}"
+                                                 onerror="this.src='{{asset('/public/assets/back-end/img/brand-logo.png')}}'"class="avatar border" alt="">
+                                            <span class="media-body title-color hover-c1">
+                                                {{\Illuminate\Support\Str::limit($data['name'],60)}}
+                                            </span>
+                                        </a>
+                                    </td>
+
+
+
+
+
                                     <td>{{ date('d M Y', $data['created_at'] ? strtotime($data['created_at']) : null) }}</td>
                                     <td class="text-center">{{$data['current_stock']}}</td>
                                 </tr>

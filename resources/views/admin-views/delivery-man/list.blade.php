@@ -49,6 +49,19 @@
                                     {{\App\CPU\translate('add')}} {{\App\CPU\translate('deliveryman')}}
                                 </a>
                             </div>
+                            <div class="col-sm-4 col-md-6 col-lg-4 mb-2 mb-sm-0">
+                                <div class="d-flex justify-content-sm-end">
+                                    <button type="button" class="btn btn-outline--primary" data-toggle="dropdown">
+                                        <i class="tio-download-to"></i>
+                                        {{\App\CPU\translate('export')}}
+                                        <i class="tio-chevron-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a class="dropdown-item" href="{{route('admin.delivery-man.export')}}">{{\App\CPU\translate('excel')}}</a></li>
+                                        <div class="dropdown-divider"></div>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- End Header -->
