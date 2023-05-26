@@ -211,6 +211,18 @@
 
 <body>
 <div class="first">
+    <table class="" style="padding-top: -50px;">
+        <tr>
+            <th style="padding-left: 60%;">
+                <h4 class="fz-12 mb-1" style="font-size: 10px;">{{\App\CPU\translate('payment_details')}}</h4>
+                <h5 class="fz-12 mb-1 font-weight-normal" style="font-size: 11px;">{{ str_replace('_',' ',$order->payment_method) }}</h5>
+                <p class="fz-12 font-weight-normal" style="font-size: 11px;">{{strtoupper($order->payment_status)}}
+                    , {{date('d-M-Y',strtotime($order['created_at']))}}</p>
+                <p class="fz-12 font-weight-normal" style="font-size: 12px;"><b>{{\App\CPU\translate('total')}}</b>
+                    {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($order->order_amount))}}</p>
+            </th>
+        </tr>
+    </table>
     <table class="content-position mb-30">
         <tr>
             <th>
@@ -293,6 +305,10 @@
     </section>
 </div>
 
+<br>
+    <div class="border-dashed-top font-weight-bold"></div>
+    <div class="border-dashed-top font-weight-bold"></div>
+    <div class="border-dashed-top font-weight-bold"></div>
 <br>
 
 <div class="">
