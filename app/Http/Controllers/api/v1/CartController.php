@@ -69,14 +69,14 @@ class CartController extends Controller
 
         $cart = CartManager::add_to_cart($request);
 
-
-        // $request['id'] = '2';
-        // $request['cart_group_id'] = 'all_cart_group';
-        // foreach (CartManager::get_cart_group_ids($request) as $group_id) {
-        //     $request['cart_group_id'] = $group_id;
-        //     self::insert_into_cart_shipping($request);
-        // }
-        
+        //for working default select of shipping method(App)(Admin - controller/web/webcontroller/448 line)
+        $request['id'] = '2';
+        $request['cart_group_id'] = 'all_cart_group';
+        foreach (CartManager::get_cart_group_ids($request) as $group_id) {
+            $request['cart_group_id'] = $group_id;
+            self::insert_into_cart_shipping($request);
+        }
+        //
 
         return response()->json($cart, 200);
     }

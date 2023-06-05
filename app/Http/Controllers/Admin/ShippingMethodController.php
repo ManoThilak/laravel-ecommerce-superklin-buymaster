@@ -88,7 +88,8 @@ class ShippingMethodController extends Controller
 
     public function setting()
     {
-        $shipping_methods = ShippingMethod::where(['creator_type' => 'admin'])->get();
+        // $shipping_methods = ShippingMethod::where(['creator_type' => 'admin'])->get();
+        $shipping_methods = ShippingMethod::where(['creator_type' => 'admin', 'status' => '1'])->get();
         $all_category_ids = Category::where(['position' => 0])->pluck('id')->toArray();
         $category_shipping_cost_ids = CategoryShippingCost::where('seller_id',0)->pluck('category_id')->toArray();
         

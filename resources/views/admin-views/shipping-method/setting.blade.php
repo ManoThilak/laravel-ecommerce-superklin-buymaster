@@ -161,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                {{-- style="pointer-events:none;" --}}
                                 <div class="d-flex flex-wrap justify-content-end gap-10">
                                     <button type="submit" class="btn btn--primary px-4">{{\App\CPU\translate('Submit')}}</button>
                                 </div>

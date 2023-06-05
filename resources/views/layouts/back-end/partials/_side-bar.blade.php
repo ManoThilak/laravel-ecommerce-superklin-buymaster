@@ -880,7 +880,7 @@
                                 <span class="text-truncate">{{\App\CPU\translate('3rd_party')}}</span>
                             </a>
                         </li>
-
+    {{-- style="pointer-events:none;" --}}
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/terms-condition') || Request::is('admin/business-settings/page*') || Request::is('admin/business-settings/privacy-policy') || Request::is('admin/business-settings/about-us') || Request::is('admin/helpTopic/list') || Request::is('admin/business-settings/social-media') || Request::is('admin/file-manager*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                href="javascript:" title="{{\App\CPU\translate('Pages_&_Media')}}">

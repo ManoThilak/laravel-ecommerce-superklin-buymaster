@@ -445,20 +445,21 @@ class WebController extends Controller
     public function shop_cart(Request $request)
     {
         if (auth('customer')->check() && Cart::where(['customer_id' => auth('customer')->id()])->count() > 0) {
-        //     // $otherController = new SystemController();
-        //     // $request->cart_group_id = 'all_cart_group';
-        //     // $request->id = '2';
-        //    // dd($request);
-        //     //$otherController->set_shipping_method($request);
+            // $otherController = new SystemController();
+            // $request->cart_group_id = 'all_cart_group';
+            // $request->id = '2';
+           // dd($request);
+            //$otherController->set_shipping_method($request);
 
-        //    // if ($request['cart_group_id'] == 'all_cart_group') {
-            
-        //         foreach (CartManager::get_cart_group_ids() as $group_id) {
-        //             $request['id'] = '2';
-        //             $request['cart_group_id'] = $group_id;
-        //             self::insert_into_cart_shipping($request);
-        //         }
-        //   //  } 
+           // if ($request['cart_group_id'] == 'all_cart_group') {
+                //for working default select of shipping method(Admin)(App - api/v1/cartcontroller/72 line)
+                foreach (CartManager::get_cart_group_ids() as $group_id) {
+                    $request['id'] = '2';
+                    $request['cart_group_id'] = $group_id;
+                    self::insert_into_cart_shipping($request);
+                }
+                //
+          //  } 
 
             return view('web-views.shop-cart');
         }
